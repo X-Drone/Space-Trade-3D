@@ -28,7 +28,7 @@ class obj3dmodel
 
 public:
 	float x = 0, y = 0, z = 0;
-	float scaleX = 1, scaleY = 1, scaleZ = 1;
+	float scaleX = 5, scaleY = 5, scaleZ = 5;
 
 	void readfile(const char* filename)
 	{
@@ -60,16 +60,19 @@ public:
 
 	void draw()
 	{
+		//glColor3ub(145, 30, 66);
 		glBegin(GL_TRIANGLES);
 		for (int i = 0; i < faces.size(); i++)
 		{
+			//glColor3f(0.1, 0.2, 0.3);
+
 			vertex v1 = vetexes[faces[i].v1 - 1];
 			vertex v2 = vetexes[faces[i].v2 - 1];
 			vertex v3 = vetexes[faces[i].v3 - 1];
 
-			glVertex3f(v1.x * scaleX, v1.y * scaleY, v1.z * scaleZ);
-			glVertex3f(v2.x * scaleX, v2.y * scaleY, v2.z * scaleZ);
-			glVertex3f(v3.x * scaleX, v3.y * scaleY, v3.z * scaleZ);
+			glColor3f(1.0f, 0.0f, 0.0f); glVertex3f(v1.x * scaleX, v1.y * scaleY, v1.z * scaleZ);
+			glColor3f(1.0f, 0.0f, 0.0f); glVertex3f(v2.x * scaleX, v2.y * scaleY, v2.z * scaleZ);
+			glColor3f(1.0f, 0.0f, 0.0f); glVertex3f(v3.x * scaleX, v3.y * scaleY, v3.z * scaleZ);
 		}
 		glEnd();
 	}
@@ -322,13 +325,13 @@ gluLookAt(p.x,p.y+p.h/2,p.z,p.x-sin(angleX/180*PI),p.y+p.h/2+(tan(angleY/180*PI)
 	   createBox(skybox,1000);
 	   glTranslatef(-p.x, -p.y, -p.z);
 
-	   glTranslatef(10, 10, 10);
+	   glTranslatef(0, 0, -10);
 	   createBox(box, 20);
-	   glTranslatef(-10, -10, -10);
+	   glTranslatef(0, 0, 10);
 
-	   glTranslatef(30, 30, 30);
+	   glTranslatef(0, 0, 10);
 	   model.draw();
-	   glTranslatef(-30, -30, -30);
+	   glTranslatef(0, 0, -10);
 
 
 		window.pushGLStates();
