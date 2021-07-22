@@ -1,0 +1,22 @@
+﻿  main.cpp
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\helpFile.hpp(8,28): warning C4305: инициализация: усечение из "double" в "float"
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(70,50): warning C4244: аргумент: преобразование "double" в "GLfloat", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(70,35): warning C4244: аргумент: преобразование "double" в "GLfloat", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(70,20): warning C4244: аргумент: преобразование "double" в "GLfloat", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(71,50): warning C4244: аргумент: преобразование "double" в "GLfloat", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(71,35): warning C4244: аргумент: преобразование "double" в "GLfloat", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(71,20): warning C4244: аргумент: преобразование "double" в "GLfloat", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(72,50): warning C4244: аргумент: преобразование "double" в "GLfloat", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(72,35): warning C4244: аргумент: преобразование "double" в "GLfloat", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(72,20): warning C4244: аргумент: преобразование "double" в "GLfloat", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(113,15): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(114,15): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(115,15): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(223,14): warning C4244: инициализация: преобразование "sf::Int32" в "float", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(279,37): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(280,46): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(281,46): warning C4244: =: преобразование "float" в "int", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(302,9): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(303,9): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+C:\Users\X-DRONE\source\repos\Space Trade 3D\Space Trade 3D\main.cpp(304,9): warning C4244: инициализация: преобразование "float" в "int", возможна потеря данных
+  Space Trade 3D.vcxproj -> C:\Users\X-DRONE\source\repos\Space Trade 3D\x64\Debug\Space Trade 3D.exe
