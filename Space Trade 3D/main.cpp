@@ -9,6 +9,22 @@
 
 using namespace sf;
 
+class nni
+{
+public:
+	int INT;
+	std::string STRING;
+	char CHAR;
+
+	bool clear()
+	{
+		INT = 0;
+		STRING = "";
+		CHAR = 32;
+	}
+};
+nni NNI;
+
 float angleX, angleY; // ”глы поворота камеры
 //float size = 20.0f;
 
@@ -20,10 +36,23 @@ class obj3dmodel
 		double y;
 		double z;
 	};
+	struct vn {
+		double x;
+		double y;
+		double z;
+	};
+	struct vt {
+		double x;
+		double y;
+	};
 	struct face {
-		unsigned int v1, v2, v3;
+		unsigned int v1, v2, v3;//, v4;
+		unsigned int vn1, vn2, vn3;//, vn4;
+		unsigned int vt1, vt2, vt3;//, vt4;
 	};
 	std::vector<vertex> vetexes;
+	std::vector<vertex> vn;
+	std::vector<vertex> vt;
 	std::vector<face> faces;
 
 public:
@@ -50,7 +79,10 @@ public:
 			case 'f':
 			{
 				face f;
-				fin >> f.v1 >> f.v2 >> f.v3;
+				fin >> f.v1 >> NNI.CHAR >> f.vt1 >> NNI.CHAR >> f.vn1
+					>> f.v2 >> NNI.CHAR >> f.vt2 >> NNI.CHAR >> f.vn2
+					>> f.v3 >> NNI.CHAR >> f.vt3 >> NNI.CHAR >> f.vn3;
+					//>> f.v4 >> NNI.CHAR >> f.vt4 >> NNI.CHAR >> f.vn4;
 				faces.push_back(f);
 			}
 			break;
@@ -61,7 +93,7 @@ public:
 	void draw()
 	{
 		//glColor3ub(145, 30, 66);
-		glBegin(GL_TRIANGLES);
+		glBegin(GL_POLYGON);
 		for (int i = 0; i < faces.size(); i++)
 		{
 			//glColor3f(0.1, 0.2, 0.3);
@@ -69,10 +101,12 @@ public:
 			vertex v1 = vetexes[faces[i].v1 - 1];
 			vertex v2 = vetexes[faces[i].v2 - 1];
 			vertex v3 = vetexes[faces[i].v3 - 1];
+			//vertex v4 = vetexes[faces[i].v4 - 1];
 
 			glColor3f(1.0f, 0.0f, 0.0f); glVertex3f(v1.x * scaleX, v1.y * scaleY, v1.z * scaleZ);
 			glColor3f(1.0f, 0.0f, 0.0f); glVertex3f(v2.x * scaleX, v2.y * scaleY, v2.z * scaleZ);
 			glColor3f(1.0f, 0.0f, 0.0f); glVertex3f(v3.x * scaleX, v3.y * scaleY, v3.z * scaleZ);
+			//glColor3f(1.0f, 0.0f, 0.0f); glVertex3f(v4.x * scaleX, v4.y * scaleY, v4.z * scaleZ);
 		}
 		glEnd();
 	}
@@ -179,7 +213,7 @@ int main()
 	model.scaleZ = 50;
 
 	////карта высот////
-	Image im;  im.loadFromFile("resources/heightmap.png");
+	/*Image im;  im.loadFromFile("resources/heightmap.png");
 
 	for(int x=0;x<256;x++)
  	 for(int z=0;z<256;z++)
@@ -187,7 +221,7 @@ int main()
 		 int c = im.getPixel(x,z).r / 15;
          for(int y=0;y<c;y++)
 	       if (y>c-3) mass[x][y][z]=1;
-	 }
+	 }*/
 	 
 
 
