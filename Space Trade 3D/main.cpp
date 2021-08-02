@@ -12,9 +12,9 @@ using namespace sf;
 class nni
 {
 public:
-	int INT;
-	std::string STRING;
-	char CHAR;
+	int INT;                     //Not
+	std::string STRING;          //Needed
+	char CHAR;                   //Information
 
 	bool clear()
 	{
@@ -46,9 +46,9 @@ class obj3dmodel
 		double y;
 	};
 	struct face {
-		unsigned int v1, v2, v3;//, v4;
-		unsigned int vn1, vn2, vn3;//, vn4;
-		unsigned int vt1, vt2, vt3;//, vt4;
+		unsigned int v1, v2, v3, v4;
+		unsigned int vn1, vn2, vn3, vn4;
+		unsigned int vt1, vt2, vt3, vt4;
 	};
 	std::vector<vertex> vetexes;
 	std::vector<vertex> vn;
@@ -79,10 +79,23 @@ public:
 			case 'f':
 			{
 				face f;
-				fin >> f.v1 >> NNI.CHAR >> f.vt1 >> NNI.CHAR >> f.vn1
-					>> f.v2 >> NNI.CHAR >> f.vt2 >> NNI.CHAR >> f.vn2
-					>> f.v3 >> NNI.CHAR >> f.vt3 >> NNI.CHAR >> f.vn3;
-					//>> f.v4 >> NNI.CHAR >> f.vt4 >> NNI.CHAR >> f.vn4;
+
+				std::string tmp1, tmp2, tmp3, tmp4;
+				fin >> tmp1 >> tmp2 >> tmp3 >> tmp4;
+
+			int pos = tmp1.find("/"); f.v1  = stoi(tmp1.substr(0, pos)); tmp1.erase(0, pos + 1);
+				pos = tmp1.find("/"); f.vt1 = stoi(tmp1.substr(0, pos)); tmp1.erase(0, pos + 1);
+				f.vn1  = stoi(tmp1);
+				pos = tmp2.find("/"); f.v2  = stoi(tmp2.substr(0, pos)); tmp2.erase(0, pos + 1);
+				pos = tmp2.find("/"); f.vt2 = stoi(tmp2.substr(0, pos)); tmp2.erase(0, pos + 1);
+				f.vn2 = stoi(tmp2);
+				pos = tmp3.find("/"); f.v3  = stoi(tmp3.substr(0, pos)); tmp3.erase(0, pos + 1);
+				pos = tmp3.find("/"); f.vt3 = stoi(tmp3.substr(0, pos)); tmp3.erase(0, pos + 1);
+				f.vn3 = stoi(tmp3);
+				pos = tmp4.find("/"); f.v4  = stoi(tmp4.substr(0, pos)); tmp4.erase(0, pos + 1);
+				pos = tmp4.find("/"); f.vt4 = stoi(tmp4.substr(0, pos)); tmp4.erase(0, pos + 1);
+				f.vn4 = stoi(tmp4);
+
 				faces.push_back(f);
 			}
 			break;
