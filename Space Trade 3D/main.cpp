@@ -51,9 +51,11 @@ class obj3dmodel
 		unsigned int vt1, vt2, vt3, vt4;
 	};
 	std::vector<vertex> vetexes;
-	std::vector<vertex> vn;
-	std::vector<vertex> vt;
+	std::vector<float> points;
+	std::vector<vn> vn;
+	std::vector<vt> vt;
 	std::vector<face> faces;
+	std::vector<GLuint> verfaces;
 
 public:
 	float x = 0, y = 0, z = 0;
@@ -74,8 +76,11 @@ public:
 				vertex v;
 				fin >> v.x >> v.y >> v.z;
 				this->vetexes.push_back(v);
+				this->points.push_back(v.x);
+				this->points.push_back(v.y);
+				this->points.push_back(v.z);
 			}
-			break;
+			//break;
 			case 'f':
 			{
 				face f;
@@ -83,27 +88,31 @@ public:
 				std::string tmp1, tmp2, tmp3, tmp4;
 				fin >> tmp1 >> tmp2 >> tmp3 >> tmp4;
 
-			int pos = tmp1.find("/"); f.v1  = stoi(tmp1.substr(0, pos)); tmp1.erase(0, pos + 1);
-				pos = tmp1.find("/"); f.vt1 = stoi(tmp1.substr(0, pos)); tmp1.erase(0, pos + 1);
-				f.vn1  = stoi(tmp1);
-				pos = tmp2.find("/"); f.v2  = stoi(tmp2.substr(0, pos)); tmp2.erase(0, pos + 1);
-				pos = tmp2.find("/"); f.vt2 = stoi(tmp2.substr(0, pos)); tmp2.erase(0, pos + 1);
-				f.vn2 = stoi(tmp2);
-				pos = tmp3.find("/"); f.v3  = stoi(tmp3.substr(0, pos)); tmp3.erase(0, pos + 1);
-				pos = tmp3.find("/"); f.vt3 = stoi(tmp3.substr(0, pos)); tmp3.erase(0, pos + 1);
-				f.vn3 = stoi(tmp3);
-				pos = tmp4.find("/"); f.v4  = stoi(tmp4.substr(0, pos)); tmp4.erase(0, pos + 1);
-				pos = tmp4.find("/"); f.vt4 = stoi(tmp4.substr(0, pos)); tmp4.erase(0, pos + 1);
-				f.vn4 = stoi(tmp4);
+			int pos = tmp1.find("/"); f.v1  = int(tmp1.substr(0, pos).c_str()); tmp1.erase(0, pos + 1);
+				pos = tmp1.find("/"); f.vt1 = int(tmp1.substr(0, pos).c_str()); tmp1.erase(0, pos + 1);
+				f.vn1 = int(tmp1.c_str());
+				pos = tmp2.find("/"); f.v2  = int(tmp2.substr(0, pos).c_str()); tmp2.erase(0, pos + 1);
+				pos = tmp2.find("/"); f.vt2 = int(tmp2.substr(0, pos).c_str()); tmp2.erase(0, pos + 1);
+				f.vn2 = int(tmp2.c_str());
+				pos = tmp3.find("/"); f.v3  = int(tmp3.substr(0, pos).c_str()); tmp3.erase(0, pos + 1);
+				pos = tmp3.find("/"); f.vt3 = int(tmp3.substr(0, pos).c_str()); tmp3.erase(0, pos + 1);
+				f.vn3 = int(tmp3.c_str());
+				pos = tmp4.find("/"); f.v4  = int(tmp4.substr(0, pos).c_str()); tmp4.erase(0, pos + 1);
+				pos = tmp4.find("/"); f.vt4 = int(tmp4.substr(0, pos).c_str()); tmp4.erase(0, pos + 1);
+				f.vn4 = int(tmp4.c_str());
 
 				faces.push_back(f);
+				verfaces.push_back(f.v1);
+				verfaces.push_back(f.v2);
+				verfaces.push_back(f.v3);
+				verfaces.push_back(f.v4);
 			}
 			break;
 			}
 		}
 	}
 
-	void draw()
+	void old_draw()
 	{
 		//glColor3ub(145, 30, 66);
 		glBegin(GL_POLYGON);
@@ -122,6 +131,15 @@ public:
 			//glColor3f(1.0f, 0.0f, 0.0f); glVertex3f(v4.x * scaleX, v4.y * scaleY, v4.z * scaleZ);
 		}
 		glEnd();
+	}
+
+	void draw()
+	{
+		glVertexPointer(3, GL_FLOAT, 0, &points);
+		glEnableClientState(GL_VERTEX_ARRAY);
+			glColor3f(1.0f, 0.0f, 0.0f);
+			glDrawElements(GL_POLYGON, verfaces.size(), GL_UNSIGNED_INT, &verfaces);
+		glDisableClientState(GL_VERTEX_ARRAY);
 	}
 };
 
@@ -207,7 +225,7 @@ public:
 int main()
 {
 	//size = 20.0f;
-	RenderWindow window(VideoMode(800, 600), "Minecraft C++");
+	RenderWindow window(VideoMode(800, 600), "Space Trade 3D");
 	
     glEnable(GL_DEPTH_TEST);
     glDepthMask(GL_TRUE);
@@ -220,7 +238,7 @@ int main()
 	ShowCursor(FALSE);
 
 	obj3dmodel model;
-	model.readfile("example.obj");
+	model.readfile("cat.obj");
 	model.scaleX = 50;
 	model.scaleY = 50;
 	model.scaleZ = 50;
